@@ -1,8 +1,18 @@
 version: '3'
 services:
   apache1:
-    image: apache1
+    image: miapache
     ports:
       - "81:80"
     volumes:
-      - /app:/var/www/html/
+      - ./app:/var/www/html
+    restart : on-failure
+  apache2:
+    image: miapache
+    ports:
+      - "82:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - "apache1"      
+
